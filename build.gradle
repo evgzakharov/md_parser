@@ -101,28 +101,3 @@ configure(projectsWithFlags('kotlin_jvm')) {
     kotlin.experimental.coroutines "enable"
 }
 
-configure(projectsWithFlags('jococo_test')) {
-    apply plugin: 'jacoco'
-
-    jacoco {
-        toolVersion = "0.8.2-SNAPSHOT"
-    }
-
-    task jacocoJupTestReport(type: JacocoReport) {
-        executionData(test)
-        sourceSets(sourceSets.main)
-        sourceDirectories = files(sourceSets.main.allSource.srcDirs)
-        classDirectories = files(sourceSets.main.output)
-
-        reports {
-            xml.enabled true
-            xml.destination file("${buildDir}/reports/jacoco/report.xml")
-            html.enabled false
-            csv.enabled false
-        }
-    }
-
-//    check.dependsOn jacocoJupTestReport
-    jacocoJupTestReport.dependsOn test
-}
-

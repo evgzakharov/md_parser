@@ -1,4 +1,4 @@
-# md_parser
+# Markdown parser
 
 [![travis build](https://travis-ci.org/evgzakharov/md_parser.svg?branch=master)](https://travis-ci.org/evgzakharov/md_parser)
 [![MIT Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](https://github.com/evgzakharov/md_parser/blob/master/LICENSE)
