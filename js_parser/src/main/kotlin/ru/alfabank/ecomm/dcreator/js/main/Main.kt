@@ -2,6 +2,7 @@ package ru.alfabank.ecomm.dcreator.js.main
 
 import kotlinx.coroutines.experimental.promise
 import ru.alfabank.ecomm.dcreator.common.File
+import ru.alfabank.ecomm.dcreator.js.types.process
 import ru.alfabank.ecomm.dcreator.parser.MarkdownParser
 
 external val require: dynamic
@@ -14,11 +15,16 @@ fun main(args: Array<String>) {
 }
 
 fun mainFun() = promise {
-    println("Hello JavaScript!")
+    if (process.argv.size < 2)
+        throw RuntimeException("there is no input file")
 
-    val fileToParser = File("./common_parser/src/test/resources/complex_example.md")
+    val fileToParse = File(process.argv[2])
+    if (!fileToParse.exists())
+        throw RuntimeException("file ${fileToParse.path} not found")
 
-    val markdownParser = MarkdownParser(File("."))
-    val parseResult = markdownParser.parse(fileToParser)
+    val filesDir = path.parse(fileToParse.path).dir
+    val markdownParser = MarkdownParser(File(filesDir))
+    val parseResult = markdownParser.parse(fileToParse)
+
     println(parseResult)
 }

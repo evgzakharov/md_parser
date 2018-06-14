@@ -1,4 +1,17 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '2.0.2'
+}
+
 dependencies {
     expectedBy project(":common_parser")
     expectedBy project(":common_nodes")
 }
+
+jar {
+    baseName = 'jvm_parser'
+    manifest {
+        attributes 'Main-Class': 'ru.alfabank.ecomm.dcreator.jvm.MainKt'
+    }
+}
+
+tasks.findByName('shadowJar').mustRunAfter build
