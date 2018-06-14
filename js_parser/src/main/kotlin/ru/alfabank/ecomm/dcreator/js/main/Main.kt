@@ -20,10 +20,9 @@ fun mainFun() = promise {
 
     val fileToParse = File(process.argv[2])
     if (!fileToParse.exists())
-        throw RuntimeException("file ${fileToParse.path} not found")
+        throw RuntimeException("file ${fileToParse.rawPath} not found")
 
-    val filesDir = path.parse(fileToParse.path).dir
-    val markdownParser = MarkdownParser(File(filesDir))
+    val markdownParser = MarkdownParser(fileToParse.getParentFile())
     val parseResult = markdownParser.parse(fileToParse)
 
     println(parseResult)
