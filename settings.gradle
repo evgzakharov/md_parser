@@ -1,4 +1,4 @@
-rootProject.name = 'kgen-doc-tools'
+rootProject.name = 'md_parser'
 
 apply from: "settings-flags.gradle"
 
