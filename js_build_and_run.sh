@@ -1,6 +1,6 @@
 #!/usr/bin/env bash -ex
 
-RUN_FILE=${1:-'./files/file1.md'}
+RUN_FILE=${1:-'./files/simple.md'}
 
 # build js code
 ./gradlew :js_parser:build
