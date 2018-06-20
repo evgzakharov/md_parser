@@ -9,3 +9,7 @@ actual suspend fun <R> File.withLines(action: suspend (Sequence<String>) -> R): 
         kotlinx.coroutines.experimental.runBlocking { action(it) }
     })
 }
+
+actual suspend fun File.writeData(data: String) {
+    this.writeText(data)
+}

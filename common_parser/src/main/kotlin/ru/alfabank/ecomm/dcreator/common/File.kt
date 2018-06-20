@@ -13,3 +13,5 @@ expect class File {
 }
 
 expect suspend fun <R> File.withLines(action: suspend (Sequence<String>) -> R): R
+
+expect suspend fun File.writeData(data: String): Unit

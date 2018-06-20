@@ -6,7 +6,7 @@ import buf.Buffer
 import kotlin.js.*
 
 external class NodeJS {
-    class ErrnoException
+    class ErrnoException: Throwable
 }
 
 external interface Stats {

@@ -14,11 +14,19 @@ enum class Level { ONE, TWO, THREE, FOUR, FIVE }
 
 data class HeaderBlockNode(val level: Level, override val node: Node) : BlockNode, NestedNode, Node by NodeIdGen()
 
-data class TextBlockNode(override val nodes: List<Node>) : BlockNode, NestedNodeList<Node>, Node by NodeIdGen()
+data class TextBlockNode(override val nodes: List<Node>) : BlockNode, NestedNodeList<Node>, Node by NodeIdGen() {
+    override fun toString(): String {
+        return "TextBlockNode(nodes=${nodes.map { "$it\n" }})"
+    }
+}
 
 data class CodeBlockNode(val language: String, val text: String) : BlockNode, Node by NodeIdGen()
 
-data class ListsBLockNode(override val nodes: List<ListNode>) : BlockNode, NestedNodeList<ListNode>, Node by NodeIdGen()
+data class ListsBLockNode(override val nodes: List<ListNode>) : BlockNode, NestedNodeList<ListNode>, Node by NodeIdGen() {
+    override fun toString(): String {
+        return "ListsBLockNode(nodes=${nodes.map { "$it\n" }})"
+    }
+}
 
 data class BlockquotesBlockNode(override val node: BlockNode) : BlockNode, NestedNode, Node by NodeIdGen()
 

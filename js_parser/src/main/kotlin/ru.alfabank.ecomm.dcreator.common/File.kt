@@ -38,3 +38,16 @@ actual suspend fun <R> File.withLines(action: suspend (Sequence<String>) -> R): 
 
     return action(promise.await())
 }
+
+actual suspend fun File.writeData(data: String) {
+    val promise = Promise<Unit> { resolve, reject ->
+        fs.writeFile(rawPath, data) { err: NodeJS.ErrnoException? ->
+            if (err != null)
+                reject(err)
+            else
+                resolve(Unit)
+        }
+    }
+
+    promise.await()
+}
